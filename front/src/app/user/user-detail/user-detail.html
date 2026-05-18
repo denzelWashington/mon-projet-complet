@@ -1,0 +1,14 @@
+<p>
+  @if (user()) {
+  {{user()?.id}} <br>
+  {{user()?.firstName}}   {{user()?.lastName}} <br>
+  {{user()?.quota}}<br>
+
+  }@else {
+<p>Chargement des données de l'utilisateur...</p>
+}
+</p>
+
+<div class="card flex flex-wrap gap-4 justify-center">
+  <p-button label="Info" [raised]="true" severity="info" (click)="createTask()" />
+</div>

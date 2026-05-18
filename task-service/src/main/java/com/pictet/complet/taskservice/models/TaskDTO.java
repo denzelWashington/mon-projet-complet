@@ -2,8 +2,8 @@ package com.pictet.complet.taskservice.models;
 
 import java.util.UUID;
 
-public class TaskDTO {
-    private String title;
-    private String status;
-    private UUID userId;
+public record TaskDTO(
+        String title,
+        String status,
+        UUID userId) {
 }
