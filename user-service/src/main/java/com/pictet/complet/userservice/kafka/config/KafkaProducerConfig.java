@@ -1,4 +1,4 @@
-package com.pictet.complet.userservice.kafka.producer;
+package com.pictet.complet.userservice.kafka.config;
 
 import com.pictet.complet.userservice.kafka.event.UserCreatedEvent;
 import org.apache.kafka.clients.producer.ProducerConfig;

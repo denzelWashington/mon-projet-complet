@@ -1,4 +1,6 @@
 package com.pictet.complet.taskservice.models;
 
-public class UserQuotaSnapshotDTO {
+import java.util.UUID;
+
+public record UserQuotaSnapshotDTO(UUID id, long quota) {
 }

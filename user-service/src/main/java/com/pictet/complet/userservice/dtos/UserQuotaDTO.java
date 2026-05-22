@@ -1,4 +1,10 @@
 package com.pictet.complet.userservice.dtos;
 
-public record UserQuotaDTO() {
+import lombok.Builder;
+
+import java.util.UUID;
+
+@Builder
+public record UserQuotaDTO(UUID id, long quota) {
+
 }

@@ -1,6 +1,7 @@
 package com.pictet.complet.userservice.controllers;
 
 import com.pictet.complet.userservice.dtos.UserDTO;
+import com.pictet.complet.userservice.dtos.UserQuotaDTO;
 import com.pictet.complet.userservice.entities.User;
 import com.pictet.complet.userservice.mappers.UserMapper;
 import com.pictet.complet.userservice.services.UserService;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
+import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -40,6 +42,12 @@ public class UserController {
     ResponseEntity<User> getUserById(@PathVariable UUID id) {
         User user = userService.getUserById(id);
         return ResponseEntity.ok(user);
+    }
+
+    @GetMapping(path="/users/quotas")
+    ResponseEntity<List<UserQuotaDTO>> getAllQuota() {
+        List<UserQuotaDTO> users = userService.getAllQuota();
+        return ResponseEntity.ok(users);
     }
 
 }
