@@ -9,11 +9,11 @@ spring:
   jpa:
     hibernate:
       ddl-auto: update
-    show-sql: true
+    show-sql: false
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
+        format_sql: false
   kafka:
     bootstrap-servers: localhost:9092
     consumer:
@@ -26,3 +26,22 @@ spring:
 server:
   port: 8081
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      userService:
+        failureRateThreshold: 50
+        waitDurationInOpenState: 10s
+        slidingWindowSize: 5
+  retry:
+    instances:
+      userService:
+        maxAttempts: 10
+        waitDuration: 4s
+
+
+logging:
+  level:
+    org.hibernate: ERROR
+    org.hibernate.SQL: OFF
+    org.hibernate.type.descriptor.sql: OFF

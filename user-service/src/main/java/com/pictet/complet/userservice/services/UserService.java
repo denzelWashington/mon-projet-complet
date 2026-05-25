@@ -18,6 +18,7 @@ public class UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final UserEventProducer userEventProducer;
+
     public UserService(UserRepository userRepository, UserMapper userMapper,
                        UserEventProducer userEventProducer) {
         this.userRepository = userRepository;
@@ -28,13 +29,14 @@ public class UserService {
     public User saveUser(UserDTO userDTO) {
         User user = this.userMapper.toEntity(userDTO);
 
+        User user1 = this.userRepository.save(user);
 
-        User user1=  this.userRepository.save(user);
-
-
+        var messageId = UUID.randomUUID().toString();
         UserCreatedEvent userEvent = new UserCreatedEvent(
                 user1.getId().toString(),
-                user1.getQuota()
+                user1.getQuota(),
+                messageId
+
         );
         this.userEventProducer.send(userEvent);
 

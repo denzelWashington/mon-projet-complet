@@ -1,6 +1,8 @@
 package com.pictet.complet.taskservice.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import lombok.Data;
 
@@ -11,6 +13,6 @@ import java.util.UUID;
 public class QuotaUser {
 
     @Id
-    public UUID id;
+    public UUID userId;
     public long quota;
 }

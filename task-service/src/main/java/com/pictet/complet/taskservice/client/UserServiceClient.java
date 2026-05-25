@@ -6,6 +6,8 @@ import com.pictet.complet.taskservice.entities.QuotaUser;
 import com.pictet.complet.taskservice.mappers.UserQuotaMapper;
 import com.pictet.complet.taskservice.models.UserQuotaSnapshotDTO;
 import com.pictet.complet.taskservice.services.UserQuotaService;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
+import io.github.resilience4j.retry.annotation.Retry;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -18,14 +20,15 @@ import java.util.List;
 @Component
 public class UserServiceClient implements CommandLineRunner {
 
-    private UserQuotaService userQuotaService;
-    private UserQuotaMapper userQuotaMapper;
+    final private UserQuotaService userQuotaService;
+    final private UserQuotaMapper userQuotaMapper;
 
     UserServiceClient(UserQuotaService userQuotaService, UserQuotaMapper userQuotaMapper) {
         this.userQuotaService = userQuotaService;
         this.userQuotaMapper = userQuotaMapper;
     }
-
+    @Retry(name = "userService")
+    @CircuitBreaker(name = "userService")
     @Override
     public void run(String... args) throws Exception {
         HttpClient client = HttpClient.newHttpClient();
@@ -45,6 +48,8 @@ public class UserServiceClient implements CommandLineRunner {
        if (this.userQuotaService.getCountQuotas() == 0 ) {
            System.out.println("*** JE FAIS LA MISE A JOUR **** :  "+this.userQuotaService.getCountQuotas());
            this.userQuotaService.saveAllQuota(quotaUserList);
+       }else {
+           System.out.println("*** R. A .S **** :");
        }
     }
 }

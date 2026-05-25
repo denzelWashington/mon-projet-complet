@@ -12,4 +12,5 @@ import java.util.UUID;
 public class UserCreatedEvent {
     private String userId;
     private long quota;
+    private String messageId;
 }

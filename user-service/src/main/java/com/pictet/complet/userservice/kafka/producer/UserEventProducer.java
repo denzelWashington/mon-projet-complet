@@ -14,7 +14,7 @@ public class UserEventProducer {
     }
 
     public void send(UserCreatedEvent event) {
-        kafkaTemplate.send("user-created-topic", event.getId(), event);
+        kafkaTemplate.send("user-created-topic", event.getMessageId(), event);
     }
 }
 

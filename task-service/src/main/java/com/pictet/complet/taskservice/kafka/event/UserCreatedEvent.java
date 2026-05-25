@@ -9,6 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UserCreatedEvent {
-    private String id;
+    private String messageId;
+    private String userId;
     private long quota;
 }
