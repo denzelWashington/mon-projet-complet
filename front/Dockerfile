@@ -1,4 +1,9 @@
-FROM ubuntu:latest
-LABEL authors="wassimsboui"
+FROM node:22 AS build
+WORKDIR /app
+COPY . .
+RUN npm install
+RUN npm run build
 
-ENTRYPOINT ["top", "-b"]
+FROM nginx:alpine
+
+COPY --from=build /app/dist /usr/share/nginx/html

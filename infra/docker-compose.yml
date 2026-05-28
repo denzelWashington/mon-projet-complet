@@ -30,6 +30,7 @@ services:
       KAFKA_CLUSTERS_0_NAME: local
       KAFKA_CLUSTERS_0_ZOOKEEPER: zookeeper:2181
       KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: kafka:29092
+    profiles: ["ui"]
   postgres:
     image: postgres:17
     container_name: postgres
@@ -39,4 +40,9 @@ services:
       POSTGRES_USER: myuser
       POSTGRES_PASSWORD: mypassword
       POSTGRES_DB: mydatabase
+  redis:
+    image: redis:7
+    container_name: redis
+    ports:
+      - "6379:6379"
 

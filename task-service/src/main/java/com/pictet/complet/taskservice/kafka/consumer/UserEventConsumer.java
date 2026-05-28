@@ -2,7 +2,9 @@ package com.pictet.complet.taskservice.kafka.consumer;
 
 import com.pictet.complet.taskservice.entities.ProcessedEvent;
 import com.pictet.complet.taskservice.kafka.event.UserCreatedEvent;
+import com.pictet.complet.taskservice.models.TaskDTO;
 import com.pictet.complet.taskservice.repositories.ProcessedEventRepository;
+import com.pictet.complet.taskservice.services.TaskService;
 import jakarta.annotation.PostConstruct;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Component;
@@ -14,9 +16,11 @@ import java.util.UUID;
 public class UserEventConsumer {
 
     private final ProcessedEventRepository processedEventRepository;
+    private final TaskService taskService;
 
-    UserEventConsumer(ProcessedEventRepository processedEventRepository) {
+    UserEventConsumer(ProcessedEventRepository processedEventRepository, TaskService taskService) {
         this.processedEventRepository = processedEventRepository;
+        this.taskService = taskService;
     }
 
     @KafkaListener(
@@ -43,8 +47,6 @@ public class UserEventConsumer {
         );
 
 
-        // TODO:
-        // save in DB table user_quota
     }
 
     @PostConstruct
