@@ -20,4 +20,4 @@ spec:
             - name: SPRING_PROFILES_ACTIVE
               value: k8s
           ports:
-            - containerPort: 8082
+            - containerPort: 9000
