@@ -14,5 +14,6 @@ public class QuotaUser {
 
     @Id
     public UUID userId;
+
     public long quota;
 }

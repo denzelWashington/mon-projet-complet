@@ -8,6 +8,7 @@ import com.pictet.complet.taskservice.services.TaskService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.UUID;
 
 @RestController
@@ -32,6 +33,14 @@ public class TaskController {
     ResponseEntity<TaskDTO> saveTask(@RequestBody TaskDTO taskDTO, @PathVariable UUID userId) {
         Task task = taskService.saveTask(taskDTO, userId);
         TaskDTO taskDTO1 = taskMapper.toDTO(task);
+        return ResponseEntity.ok(taskDTO1);
+    }
+
+    @GetMapping(path = "/task/{userId}")
+    ResponseEntity<List<TaskDTO>> getTasks(@PathVariable UUID userId) {
+        List<Task> task = taskService.getTasks(userId);
+
+        List<TaskDTO> taskDTO1 = task.stream().map(taskMapper::toDTO).toList() ;
         return ResponseEntity.ok(taskDTO1);
     }
 }

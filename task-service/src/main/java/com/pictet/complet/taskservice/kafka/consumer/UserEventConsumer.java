@@ -35,7 +35,6 @@ public class UserEventConsumer {
             return;
         }
 
-
         System.out.println("message id : " + event.getMessageId());
         System.out.println("USER RECEIVED: " + event.getUserId());
         System.out.println("QUOTA: " + event.getQuota());

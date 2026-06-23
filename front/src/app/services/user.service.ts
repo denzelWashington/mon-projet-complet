@@ -13,7 +13,7 @@ export interface User {
 })
 export class UserService {
 
-  private readonly apiUrl = "http://localhost:8082/api";
+  private readonly apiUrl = "http://localhost:9000/api";
   private http = inject(HttpClient);
 
   getAllUsers(): Observable<User[]> {
@@ -27,5 +27,6 @@ export class UserService {
   getUser(id: string): Observable<User> {
         return this.http.get<User>(`${this.apiUrl}/user/${id}`);
    }
+
 
 }

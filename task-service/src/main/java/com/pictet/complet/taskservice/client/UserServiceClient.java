@@ -22,10 +22,12 @@ public class UserServiceClient implements CommandLineRunner {
 
     final private UserQuotaService userQuotaService;
     final private UserQuotaMapper userQuotaMapper;
+    final private ObjectMapper mapper; // ← injecté
 
-    UserServiceClient(UserQuotaService userQuotaService, UserQuotaMapper userQuotaMapper) {
+    UserServiceClient(UserQuotaService userQuotaService, UserQuotaMapper userQuotaMapper, ObjectMapper mapper) {
         this.userQuotaService = userQuotaService;
         this.userQuotaMapper = userQuotaMapper;
+        this.mapper = mapper;
     }
     @Retry(name = "userService")
     @CircuitBreaker(name = "userService")
@@ -38,7 +40,6 @@ public class UserServiceClient implements CommandLineRunner {
         HttpResponse<String> response =
                 client.send(request, HttpResponse.BodyHandlers.ofString());
 
-        ObjectMapper mapper = new ObjectMapper();
 
         List<UserQuotaSnapshotDTO> quotas =
                 mapper.readValue(response.body(),

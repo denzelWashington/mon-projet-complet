@@ -59,3 +59,42 @@ services:
       - "5601:5601"
     depends_on:
       - elasticsearch
+  user-service:
+   image: user-service
+   build:
+     context: ..
+     dockerfile: user-service/Dockerfile
+   ports:
+     - "8082:8082"
+   depends_on:
+     - postgres
+     - api-gateway
+     - kafka
+   environment:
+     SPRING_PROFILES_ACTIVE: k8s
+  task-service:
+    image: task-service
+    build:
+      context: ..
+      dockerfile: task-service/Dockerfile
+    ports:
+      - "8081:8081"
+    depends_on:
+      - postgres
+      - api-gateway
+      - user-service
+      - kafka
+    environment:
+      SPRING_PROFILES_ACTIVE: k8s
+  api-gateway:
+    image: api-gateway
+    build:
+      context: ..
+      dockerfile: api-gateway/Dockerfile
+    ports:
+      - "9000:9000"
+    environment:
+      SPRING_PROFILES_ACTIVE: k8s
+    depends_on:
+      - redis
+

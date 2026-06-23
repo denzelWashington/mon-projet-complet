@@ -19,6 +19,12 @@ spring:
     producer:
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
       value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+  data:
+    redis:
+      host: localhost
+      port: 6379
+  cache:
+    type: redis
 server:
   port: 8082
 
@@ -27,5 +33,9 @@ logging:
     org.hibernate: ERROR
     org.hibernate.SQL: OFF
     org.hibernate.type.descriptor.sql: OFF
+  file:
+    name: logs/user-service.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level ${spring.application.name} - %msg%n"
 
 

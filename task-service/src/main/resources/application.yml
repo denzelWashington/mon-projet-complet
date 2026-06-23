@@ -23,6 +23,14 @@ spring:
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
       properties:
         spring.json.trusted.packages: "*"
+
+  data:
+    redis:
+      host: localhost
+      port: 6379
+
+  cache:
+    type: redis
 server:
   port: 8081
 
@@ -39,9 +47,12 @@ resilience4j:
         maxAttempts: 10
         waitDuration: 4s
 
-
 logging:
   level:
     org.hibernate: ERROR
     org.hibernate.SQL: OFF
     org.hibernate.type.descriptor.sql: OFF
+  file:
+    name: logs/task-service.log
+  pattern:
+    console: "%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level ${spring.application.name} - %msg%n"

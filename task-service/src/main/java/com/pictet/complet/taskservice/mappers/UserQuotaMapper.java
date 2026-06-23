@@ -7,7 +7,7 @@ import org.mapstruct.Mapping;
 
 @Mapper(componentModel = "spring")
 public interface UserQuotaMapper {
-    @Mapping(source = "id", target = "userId")
+    //@Mapping(source = "id", target = "userId")
     QuotaUser toEntity(UserQuotaSnapshotDTO userQuotaSnapshotDTO);
     UserQuotaSnapshotDTO toDTO(QuotaUser quotaUser);
 }

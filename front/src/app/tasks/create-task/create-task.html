@@ -1,0 +1,12 @@
+<form [formGroup]="form" style="display: flex; flex-direction: column; gap: 1rem; padding: 1rem;">
+  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+    <label>Title</label>
+    <input pInputText formControlName="title" style="width: 100%" />
+  </div>
+  <div style="display: flex; flex-direction: column; gap: 0.5rem;">
+    <label>Status</label>
+    <p-select formControlName="status" [options]="statusOptions" optionLabel="label" optionValue="value" placeholder="Select a status" styleClass="w-full" />
+  </div>
+  <p-button label="Cancel" severity="secondary" (onClick)="cancel()" styleClass="w-full" />
+  <p-button label="Save" (onClick)="save()" styleClass="w-full" />
+</form>
