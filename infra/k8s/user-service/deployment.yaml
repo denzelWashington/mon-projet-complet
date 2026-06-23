@@ -1,20 +1,20 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: task-service
+  name: user-service
 spec:
   replicas: 2
   selector:
     matchLabels:
-      app: task-service
+      app: user-service
   template:
     metadata:
       labels:
-        app: task-service
+        app: user-service
     spec:
       containers:
-        - name: task-service
-          image: task-service:latest
+        - name: user-service
+          image: user-service:latest
           imagePullPolicy: IfNotPresent
           env:
             - name: SPRING_PROFILES_ACTIVE
