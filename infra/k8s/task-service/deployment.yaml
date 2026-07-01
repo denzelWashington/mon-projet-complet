@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: task-service
 spec:
-  replicas: 2
+  replicas: 0
   selector:
     matchLabels:
       app: task-service

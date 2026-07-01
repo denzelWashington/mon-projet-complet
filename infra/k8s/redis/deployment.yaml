@@ -4,7 +4,7 @@ metadata:
   name: redis
   namespace: bienvenue-k8s
 spec:
-  replicas: 1
+  replicas: 0
   selector:
     matchLabels:
       app: redis
