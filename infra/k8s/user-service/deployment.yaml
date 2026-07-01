@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: user-service
 spec:
-  replicas: 6
+  replicas: 0
   selector:
     matchLabels:
       app: user-service
